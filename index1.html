@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student LMS</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- External CSS for Styles -->
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(45deg, #6a11cb, #2575fc);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow: hidden;
+            overflow-y: auto; 
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 10;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            margin: 0 20px;
+            padding: 10px;
+            transition: all 0.3s;
+        }
+
+        .navbar a:hover {
+            background-color: #2575fc;
+            border-radius: 5px;
+        }
+
+        .container {
+            text-align: center;
+            color: white;
+            padding: 40px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            width: 100%;
+            max-width: 600px;
+            margin-top: 80px; /* To avoid overlap with navbar */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            overflow-y: auto; 
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            animation: slideInFromTop 1s ease-out;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            animation: slideInFromBottom 1.5s ease-out;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            font-size: 1rem;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus {
+            border-color: #2575fc;
+        }
+
+        .button {
+            padding: 12px 30px;
+            background: linear-gradient(45deg, #2575fc, #6a11cb);
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .button:hover {
+            transform: scale(1.1);
+        }
+
+        .status {
+            margin-top: 20px;
+            font-size: 1.1rem;
+        }
+
+        /* Keyframe Animations */
+        @keyframes slideInFromTop {
+            0% { transform: translateY(-50px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes slideInFromBottom {
+            0% { transform: translateY(50px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Styling for student list */
+        .student-list {
+            margin-top: 40px;
+            color: white;
+            list-style: none;
+            padding: 0;
+        }
+
+        .student-list li {
+            background-color: rgba(0, 0, 0, 0.5);
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <a href="#" id="addHomeNav">Home</a>
+        <a href="#" id="addStudentNav">Add Student</a>
+        <a href="#" id="viewStudentsNav">View Students</a>
+        <a href="#" id="updateAgeNav">Update Student Age</a>
+        <a href="#" id="deleteStudentNav">Delete Student</a>
+    </div>
+
+    <!-- Content -->
+    <div class="container" id="contentContainer">
+        <h1>Add Student</h1>
+        <form id="studentForm">
+            <div class="form-group">
+                <input type="text" id="name" placeholder="Enter student name" required>
+            </div>
+            <div class="form-group">
+                <input type="number" id="age" placeholder="Enter student age" required>
+            </div>
+            <div class="form-group">
+                <input type="text" id="major" placeholder="Enter student major" required>
+            </div>
+            <button type="submit" class="button">Add Student</button>
+        </form>
+
+        <div id="status" class="status"></div>
+
+        
+    </div>
+
+    <script>
+        // Event listeners for navigation
+        document.getElementById('addHomeNav').addEventListener('click', showHome);
+        document.getElementById('addStudentNav').addEventListener('click', showAddStudent);
+        document.getElementById('viewStudentsNav').addEventListener('click', showViewStudents);
+        document.getElementById('updateAgeNav').addEventListener('click', showUpdateAge);
+        document.getElementById('deleteStudentNav').addEventListener('click', showDeleteStudent);
+
+        function showHome() {
+            document.getElementById('contentContainer').innerHTML = `
+            <h1>MongoDB is a popular NoSQL database that pairs well with Flask for building modern web applications. \
+                </h1>
+        `;
+        }
+        // Function to display Add Student form
+        function showAddStudent() {
+            document.getElementById('contentContainer').innerHTML = `
+                <h1>Add Student</h1>
+                <form id="studentForm">
+                    <div class="form-group">
+                        <input type="text" id="name" placeholder="Enter student name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" id="age" placeholder="Enter student age" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="major" placeholder="Enter student major" required>
+                    </div>
+                    <button type="submit" class="button">Add Student</button>
+                </form>
+                <div id="status" class="status"></div>
+            `;
+
+            // Handle form submission
+            document.getElementById('studentForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+                const studentData = {
+                    name: document.getElementById('name').value,
+                    age: parseInt(document.getElementById('age').value),
+                    major: document.getElementById('major').value
+                };
+                fetch('/students', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(studentData)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('status').innerText = data.message;
+                    document.getElementById('studentForm').reset();
+                    fetchStudents();
+                })
+                .catch(error => {
+                    document.getElementById('status').innerText = 'Failed to add student. Please try again.';
+                });
+            });
+        }
+
+        // Function to view all students over 18
+        function showViewStudents() {
+            document.getElementById('contentContainer').innerHTML = `
+                <h1>Students Over 18</h1>
+                <ul id="studentList" class="student-list"></ul>
+            `;
+            fetchStudents();
+        }
+
+        // Function to update student age
+        function showUpdateAge() {
+            document.getElementById('contentContainer').innerHTML = `
+                <h1>Update Student Age</h1>
+                <form id="updateAgeForm">
+                    <div class="form-group">
+                        <input type="text" id="updateName" placeholder="Enter student name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" id="newAge" placeholder="Enter new age" required>
+                    </div>
+                    <button type="submit" class="button">Update Age</button>
+                </form>
+                <div id="status" class="status"></div>
+            `;
+
+            // Handle form submission for updating age
+            document.getElementById('updateAgeForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+                const updateData = {
+                    name: document.getElementById('updateName').value,
+                    age: parseInt(document.getElementById('newAge').value),
+                };
+
+                fetch('/students/update', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(updateData),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('status').innerText = data.message;
+                    fetchStudents();
+                })
+                .catch(error => {
+                    document.getElementById('status').innerText = 'Failed to update student age. Please try again.';
+                });
+            });
+        }
+
+        // Function to delete student
+        function showDeleteStudent() {
+            document.getElementById('contentContainer').innerHTML = `
+                <h1>Delete Student</h1>
+                <form id="deleteStudentForm">
+                    <div class="form-group">
+                        <input type="text" id="deleteName" placeholder="Enter student name" required>
+                    </div>
+                    <button type="submit" class="button">Delete Student</button>
+                </form>
+                <div id="status" class="status"></div>
+            `;
+
+            // Handle form submission for deleting student
+            document.getElementById('deleteStudentForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+                const deleteData = {
+                    name: document.getElementById('deleteName').value,
+                };
+
+                fetch('/students/delete', {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(deleteData),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('status').innerText = data.message;
+                    fetchStudents();
+                })
+                .catch(error => {
+                    document.getElementById('status').innerText = 'Failed to delete student. Please try again.';
+                });
+            });
+        }
+
+        // Fetch students from the database and display them
+        function fetchStudents() {
+            fetch('/students')
+                .then(response => response.json())
+                .then(students => {
+                    console.log(students); // Log the data to the console
+                    const studentList = document.getElementById('studentList');
+                    studentList.innerHTML = ''; 
+                    if (students.length === 0) {
+                        studentList.innerHTML = '<li>No students found.</li>';
+                    } else {
+                        students.forEach(student => {
+                            const li = document.createElement('li');
+                            li.textContent = `${student.name} (${student.age}) - ${student.major}`;
+                            studentList.appendChild(li);
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching students:', error);
+                });
+        }
+
+        // Fetch students initially
+        fetchStudents();
+    </script>
+
+</body>
+</html>
