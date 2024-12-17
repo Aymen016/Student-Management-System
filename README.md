@@ -1,3 +1,9 @@
+<p align="center">
+  <img src=![student](https://github.com/user-attachments/assets/56051ea0-4bb9-4bfe-b202-4e445e72c854) alt="Image 1" width="45%" />
+  <img src= ![database-storage](https://github.com/user-attachments/assets/cfcfc0c8-1820-46eb-a8dc-448842143c07) alt="Image 2" width="45%" />
+</p>
+
+
 # 📝 Student Management System
 
 ## 🚀 Overview
