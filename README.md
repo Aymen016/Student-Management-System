@@ -4,6 +4,7 @@
 </p>
 
 
+![home-feed](https://github.com/user-attachments/assets/afe57fd8-42e9-4ec4-8c92-0f54a5c1eb38)
 
 # 📝 Student Management System
 
