@@ -9,6 +9,7 @@
 
 ## 🚀 Overview
 This project implements a basic **Student Management System** using **Flask** as the web framework and **MongoDB** as the database. The application provides CRUD (Create, Read, Update, Delete) operations to manage student data.🎓
+![interface](https://github.com/user-attachments/assets/878ea0ee-c379-44df-b24a-ff4d1b9d86b1)
 
 ---
 
