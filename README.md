@@ -56,6 +56,7 @@ This project implements a basic **Student Management System** using **Flask** as
 
 ### ❌ Delete Student
 - Deletes a student record based on their name.🚮
+![deletion-student](https://github.com/user-attachments/assets/b992116c-0076-4579-8036-44462c41c6f9)
 
 ---
 
