@@ -51,9 +51,13 @@ This project implements a basic **Student Management System** using **Flask** as
 
 ### 📋 View Students
 - Displays all students in the `students` collection with filtering and sorting options.🔍
+![students-list](https://github.com/user-attachments/assets/2ae5ecfb-3a69-43bf-a647-a625f237f084)
+
 
 ### 🖊️ Update Student Age
 - Updates the `age` field of a specific student.🕒
+![update-students](https://github.com/user-attachments/assets/a7374e3b-1e61-44c5-93ca-49c77cc9b909)
+
 
 ### ❌ Delete Student
 - Deletes a student record based on their name.🚮
