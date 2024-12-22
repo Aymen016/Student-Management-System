@@ -46,6 +46,8 @@ This project implements a basic **Student Management System** using **Flask** as
 ### ➕ Add Student
 - A form is provided to insert new student records into the database.📝
 
+![add-students](https://github.com/user-attachments/assets/62ca6d45-a5c0-4af0-a858-c912f1673fff)
+
 ### 📋 View Students
 - Displays all students in the `students` collection with filtering and sorting options.🔍
 
