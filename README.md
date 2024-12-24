@@ -94,8 +94,12 @@ Open your browser and navigate to:
 ---
 
 ## 👨‍💻 Contributor
-Aymen016
-GitHub Profile 🚀
+**Aymen Baig**  
+A passionate developer and aspiring Data Scientist specializing in Machine Learning and Natural Language Processing. Experienced in building lightweight and efficient chatbot systems for small businesses. Always open to collaborations and learning new technologies.
+
+- **GitHub**: [Aymen Baig](https://github.com/Aymen016/)
+- **LinkedIn**: [Aymen Baig](https://www.linkedin.com/in/aymen-baig-700a06284/)
+
 
 ---
 ## 📜 License
